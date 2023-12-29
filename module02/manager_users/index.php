@@ -4,6 +4,8 @@
 session_start();
 require_once('config.php');
 
+echo _WEB_HOST;
+
 $module = _MODULE;
 $action = _ACTION;
 
