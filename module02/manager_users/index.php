@@ -3,8 +3,8 @@
 
 session_start();
 require_once('config.php');
-
-echo _WEB_HOST;
+require_once('includes/functions.php');
+require_once('includes/connect.php');
 
 $module = _MODULE;
 $action = _ACTION;
