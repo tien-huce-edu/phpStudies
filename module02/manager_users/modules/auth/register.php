@@ -4,11 +4,6 @@ if (!defined('_CODE')) {
     die("Error! access not allow");
 }
 
-update('users', [
-    'fullname' => 'Nguyễn Văn Tiến',
-    'email' => 'tienhg201@gmail.com',
-], 'id=2');
-
 $data = [
     'pageTitle' => 'Đăng ký tài khoản'
 ];

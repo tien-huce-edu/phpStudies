@@ -21,3 +21,6 @@ const _HOST_NAME = 'localhost';
 const _DATABASE_NAME = 'tienhg2001';
 const _DATABASE_USER_NAME = 'root';
 const _DATABASE_PASSWORD = '';
+
+const _VONAGE_API_KEY = '99fa3761';
+const _VONAGE_API_API_SECRET = 'xksKNwbqqmZ5zqVp';

@@ -4,7 +4,7 @@ if (!defined('_CODE')) {
     die("Error! access not allow");
 }
 
-function query($sql, $data = [])
+function query($sql, $data = [], $check = false)
 {
     global $conn;
     $result = false;
@@ -20,6 +20,9 @@ function query($sql, $data = [])
         echo 'File: ' . $e->getFile() . '<br/>';
         echo 'Line: ' . $e->getLine() . '<br/>';
         die();
+    }
+    if ($check) {
+        return $statement;
     }
     return $result;
 }
@@ -53,4 +56,28 @@ function update($table, $data, $where){
 function delete($table, $where){
     $sql = "delete from $table where $where";
     return query($sql);
+}
+
+// lay nhieu dong du lieu
+function getRaw($sql){
+    $result = query($sql, [], true);
+    if(is_object($result)){
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
+}
+
+// lay 1 dong du lieu
+function getOneRaw($sql){
+    $result = query($sql, [], true);
+    if( is_object($result)){
+        return $result->fetch(PDO::FETCH_ASSOC);
+    }
+}
+
+// dem so dong du lieu
+function countRaw($sql){
+    $result = query($sql, [], true);
+    if(is_object($result)){
+        return $result->rowCount();
+    }
 }

@@ -17,7 +17,6 @@ if (!defined('_CODE')) {
 </head>
 
 <body>
-    <h1>Header</h1>
 </body>
 
 </html>
