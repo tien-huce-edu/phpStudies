@@ -4,7 +4,7 @@ if (!defined('_CODE')) {
 }
 
 
-require_once(_WEB_PATH_TEMPLATE.'/layout/header.php');
+// require_once(_WEB_PATH_TEMPLATE.'/layout/header.php');
 ?>
 <h1>Dashboard</h1>
 <?php
