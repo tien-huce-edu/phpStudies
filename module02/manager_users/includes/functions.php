@@ -38,12 +38,12 @@ function sendMail($to, $subject, $content)
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = $subject;
-        $mail->Body = "<h1>Xác nhận email đăng ký!</h1><strong>" . $content . '<a href="/">Click here</a>' . "</strong>";
+        $mail->Body = "<h1>Xác nhận email đăng ký!</h1><strong>" . $content .   "</strong>";
 
         $mail->send();
-        echo 'Gửi thành công';
+        return 'Gửi thành công';
     } catch (Exception $e) {
-        echo "Gửi mail thất bại. Mailer Error: {$mail->ErrorInfo}";
+        return "Gửi mail thất bại. Mailer Error: {$mail->ErrorInfo}";
     }
 }
 
@@ -79,9 +79,9 @@ function filter()
             foreach ($_POST as $key => $value) {
                 $key = strip_tags($key);
                 if (is_array($value)) {
-                    $data[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
+                    $data[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
                 } else {
-                    $data[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+                    $data[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
                 }
             }
         }
@@ -98,8 +98,41 @@ function isNumberInt($number)
 {
     return filter_var($number, FILTER_VALIDATE_INT);
 }
-
 function isNumberFloat($number)
 {
     return filter_var($number, FILTER_VALIDATE_FLOAT);
+}
+function isPhone($phone)
+{
+    $checkZero = false;
+    if ($phone[0] == '0') {
+        $checkZero = true;
+        $phone = substr($phone, 1);
+    }
+
+    $checkNumber = false;
+    if (isNumberInt($phone) && strlen($phone) == 9) {
+        $checkNumber = true;
+    }
+
+    return $checkNumber && $checkZero;
+}
+
+function getMsg($msg, $type)
+{
+    echo '<div class="alert alert-' . $type . '">' . $msg . '</div>';
+}
+function redirect($url = 'index.php')
+{
+    header('location: ' . $url);
+    die();
+}
+
+function formError($findName, $beforeHTML = '', $afterHTML = '', $errors)
+{
+    echo (!empty($errors[$findName])) ? $beforeHTML . reset($errors[$findName]) . $afterHTML : null;
+}
+
+function old($type ='', $old , $default = null){
+    echo !empty($old[$type]) ? $old[$type] : $default;
 }

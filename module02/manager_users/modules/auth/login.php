@@ -8,9 +8,7 @@ $data = [
 ];
 layout('header', $data);
 
-$check = isEmail('tienhg2001');
-$checkInt = isNumberFloat('');
-echo var_dump($checkInt);
+
 ?>
 
 <div class="row">

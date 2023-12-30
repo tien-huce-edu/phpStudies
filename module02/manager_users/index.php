@@ -36,6 +36,7 @@ require_once "vendor/autoload.php";
 
 // sendMail('tienhg1310@gmail.com', '[Verify Email - Register]', 'Click here to verify your email address');
 
+
 $module = _MODULE;
 $action = _ACTION;
 

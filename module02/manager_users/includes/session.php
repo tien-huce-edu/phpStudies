@@ -27,7 +27,7 @@ function getSession($key = '')
 // hàm xóa session
 function removeSession($key = '')
 {
-    if (!empty($key)) {
+    if (empty($key)) {
         session_destroy();
         return true;
     } else {
@@ -37,6 +37,7 @@ function removeSession($key = '')
         }
     }
 }
+
 
 function setFlashData($key, $value) {
     $key = 'flash_' . $key;
