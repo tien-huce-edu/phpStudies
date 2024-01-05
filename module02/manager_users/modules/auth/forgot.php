@@ -17,7 +17,40 @@ if (isPost()) {
     $filterAll = filter();
     if (!empty($filterAll['email'])) {
         $email = $filterAll['email'];
-        echo $email;
+        $queryUser = getOneRaw("SELECT id, email FROM users WHERE email = '$email'");
+
+        if (!empty($queryUser)) {
+            $userId = $queryUser['id'];
+            $userEmail = $queryUser['email'];
+            // create forgot token 
+            $forgotToken = sha1(uniqid() . time());
+            $dataInsert = [
+                'forgotToken' => $forgotToken,
+            ];
+            $updateStatus = update('users', $dataInsert, "id = $userId");
+
+            if ($updateStatus) {
+                // tao link reset password
+                $linkReset = _WEB_HOST . "?module=auth&action=reset&token=$forgotToken";
+                // gui mail cho nguoi dung
+                $subject = '[Reset password]';
+                $content = '<h1>Chào bạn!</h1><br/><p>Chúng tôi nhận được yêu cầu đổi lại mật khẩu của bạn.</p><br/> <p>Vui lòng <a href="' . $linkReset . '">click vào đây</a> để khôi phục mật khẩu</p><br/> <p>Trân trọng cảm ơn</p>';
+                $sendEmail = sendMail($userEmail, $subject, $content);
+                if ($sendEmail) {
+                    setFlashData('msg', 'Vui lòng kiểm tra email để đổi mật khẩu');
+                    setFlashData('msg_type', 'success');
+                } else {
+                    setFlashData('msg', 'Lỗi hệ thống vui lòng thử lại');
+                    setFlashData('msg_type', 'danger');
+                }
+            } else {
+                setFlashData('msg', 'Không thể đặt lại mật khẩu lòng thử lại');
+                setFlashData('msg_type', 'danger');
+            }
+        } else {
+            setFlashData('msg', 'Email không tồn tại!');
+            setFlashData('msg_type', 'danger');
+        }
     } else {
         setFlashData('msg', 'Vui lòng nhập email!');
         setFlashData('msg_type', 'danger');
@@ -44,7 +77,7 @@ $msg_type = getFlashData('msg_type');
                 <input name="email" type="email" class="form-control" placeholder="Dia chi email">
 
             </div>
-            <button type="submit" class="mg-btn btn btn-primary btn-block">Đăng nhập</button>
+            <button type="submit" class="mg-btn btn btn-primary btn-block">Xác nhận</button>
             <hr>
             <p class="text-center"><a href="?module=auth&action=forgot">Đăng nhập</a></p>
             <p class="text-center">Bạn chưa có tài khoản? <a href="?module=auth&action=register">Đăng ký</a></p>
