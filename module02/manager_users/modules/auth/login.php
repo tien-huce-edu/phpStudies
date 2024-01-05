@@ -88,12 +88,10 @@ $msg_type = getFlashData('msg_type');
             <div class="form-group mg-form">
                 <label for="">Email</label>
                 <input name="email" type="email" class="form-control" placeholder="Dia chi email">
-
             </div>
             <div class="form-group mg-form">
                 <label for="">Password</label>
                 <input name="password" type="password" class="form-control" placeholder="Mat khau">
-
             </div>
             <button type="submit" class="mg-btn btn btn-primary btn-block">Đăng nhập</button>
             <hr>
