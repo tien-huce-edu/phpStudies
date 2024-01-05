@@ -29,13 +29,11 @@ if (isPost()) {
             $userId = $userQuery['id'];
             $token = $userQuery['activeToken'];
             if (empty($token)) {
-
                 if (password_verify($password, $passwordHash)) {
                     // tạo token login 
                     $tokenLogin = sha1(uniqid() . time());
 
                     //insert vao bang
-
                     $dataInsert = [
                         'user_Id' => $userId,
                         'token' => $tokenLogin,
