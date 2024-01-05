@@ -65,7 +65,8 @@ $msg_type = getFlashData('msg_type');
 
 <div class="row">
     <div class='col-4' style="margin: 50px auto;">
-        <h2 class="text-center text-uppercase">Quên mật khẩu</h2>
+        <h3 class="text-center text-uppercase">Nhập địa chỉ email để lấy lại mật khẩu</h3>
+        <br />
         <?php
         if (!empty($msg)) {
             getMsg($msg, $msg_type);
