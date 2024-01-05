@@ -67,7 +67,7 @@ if (isPost()) {
             // tạo link kích hoạt
             $linkActive = _WEB_HOST . '?module=auth&action=active&token=' . $activeToken;
             // send mail
-            $subject = '[' . $filterAll['email'] .' - ' .  'xác nhận đăng ký tài khoản' . ']';
+            $subject = '[' . $filterAll['email'] . ' - ' . 'xác nhận đăng ký tài khoản' . ']';
             $content = '<p>Chào ' . $filterAll['fullname'] . '</p>';
             $content .= '<p>Bạn đã đăng ký tài khoản thành công. Vui lòng click vào link bên dưới để kích hoạt tài khoản.</p>';
             $content .= $linkActive;
@@ -142,7 +142,7 @@ $old = getFlashData('old');
             <div class="form-group mg-form">
                 <label for="">Password</label>
                 <input name="password" type="password" class="form-control" placeholder="Mật khẩu"
-                    value="<?php old('password', $old, 'Tienhg2001'); ?>">
+                    value="<?php old('password', $old, '123123123'); ?>">
                 <?php
                 formError('password', '<span class="error">', '</span>', $errors);
                 ?>
@@ -150,7 +150,7 @@ $old = getFlashData('old');
             <div class="form-group mg-form">
                 <label for="">Nhập lại Password</label>
                 <input name="password_confirm" type="password" class="form-control" placeholder="Nhập lại mật khẩu"
-                    value="<?php old('password_confirm', $old, 'Tienhg2001'); ?>">
+                    value="<?php old('password_confirm', $old, '123123123'); ?>">
                 <?php
                 formError('password_confirm', '<span class="error">', '</span>', $errors);
                 ?>

@@ -4,9 +4,18 @@ if (!defined('_CODE')) {
 }
 
 
-// require_once(_WEB_PATH_TEMPLATE.'/layout/header.php');
+$data = [
+    'pageTitle' => 'Trang Dashboard'
+];
+layout('header', $data);
+
+if (!isLogin()) {
+    redirect('?module=auth&action=login');
+}
 ?>
+
 <h1>Dashboard</h1>
+
 <?php
-require_once(_WEB_PATH_TEMPLATE.'/layout/footer.php');
+require_once(_WEB_PATH_TEMPLATE . '/layout/footer.php');
 ?>

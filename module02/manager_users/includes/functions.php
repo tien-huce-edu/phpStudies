@@ -27,7 +27,7 @@ function sendMail($to, $subject, $content)
         $mail->Host = 'smtp.gmail.com';                     //Set the SMTP server to send through
         $mail->SMTPAuth = true;                                   //Enable SMTP authentication
         $mail->Username = 'tienhg201@gmail.com';                     //SMTP username
-        $mail->Password = 'leqf okww sahx zlmk';                               //SMTP password
+        $mail->Password = 'cjnw duis tirr gfap';                               //SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
         $mail->Port = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
@@ -38,7 +38,7 @@ function sendMail($to, $subject, $content)
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = $subject;
-        $mail->Body = "<h1>Xác nhận email đăng ký!</h1><strong>" . $content .   "</strong>";
+        $mail->Body = "<h1>Xác nhận email đăng ký!</h1><strong>" . $content . "</strong>";
 
         $mail->send();
         return 'Gửi thành công';
@@ -128,11 +128,29 @@ function redirect($url = 'index.php')
     die();
 }
 
-function formError($findName, $beforeHTML = '', $afterHTML = '', $errors)
+function formError($findName, $beforeHTML = '', $afterHTML = '', $errors = [])
 {
-    echo (!empty($errors[$findName])) ? $beforeHTML . reset($errors[$findName]) . $afterHTML : null;
+    echo (!empty($errors[$findName])) ? $beforeHTML . reset($errors[$findName]) . $afterHTML : '<span></span>';
 }
 
-function old($type ='', $old , $default = null){
+function old($type = '', $old, $default = null)
+{
     echo !empty($old[$type]) ? $old[$type] : $default;
+}
+
+function isLogin()
+{
+    $checkLogin = false;
+    if (getSession('loginToken')) {
+        $tokenLogin = getSession('loginToken');
+
+        // check token trong db
+        $queryToken = getOneRaw("SELECT user_id from tokenlogin WHERE token ='$tokenLogin'");
+        if (!empty($queryToken)) {
+            $checkLogin = true;
+        } else {
+            removeSession('loginToken');
+        }
+    }
+    return $checkLogin;
 }
