@@ -19,7 +19,12 @@ if (!defined('_CODE')) {
 </head>
 
 <body>
-    <header class="p-3 mb-3 border-bottom">
+   
+</body>
+
+</html>
+
+<header class="p-3 mb-3 border-bottom">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
@@ -45,18 +50,14 @@ if (!defined('_CODE')) {
                         <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
                     </a>
                     <ul class="dropdown-menu text-small" style="">
-                        <li><a class="dropdown-item" href="#">New project...</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item" href="#">Cài đặt</a></li>
+                        <li><a class="dropdown-item" href="#">Thông tin người dùng</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                        <li><a class="dropdown-item" href="?module=auth&action=logout">Đăng xuất</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </header>
-</body>
-
-</html>

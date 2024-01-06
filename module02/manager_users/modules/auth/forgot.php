@@ -6,7 +6,7 @@ if (!defined('_CODE')) {
 $data = [
     'pageTitle' => 'Quên mật khẩu'
 ];
-layout('header', $data);
+layout('header-login', $data);
 
 
 if (isLogin()) {
@@ -87,5 +87,5 @@ $msg_type = getFlashData('msg_type');
 </div>
 
 <?php
-layout('footer');
+layout('footer-login');
 ?>
