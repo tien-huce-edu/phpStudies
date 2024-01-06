@@ -4,7 +4,7 @@ if (!defined('_CODE')) {
     die("Error! access not allow");
 }
 
-layout('header');
+layout('header-login');
 
 $token = filter()['token'];
 if (!empty($token)) {
@@ -34,5 +34,5 @@ if (!empty($token)) {
 }
 ?>
 <?php
-layout('footer')
+layout('footer-login')
     ?>

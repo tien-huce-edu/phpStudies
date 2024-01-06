@@ -7,6 +7,7 @@ $data = [
     'pageTitle' => 'Đăng ký tài khoản'
 ];
 
+layout('header-login', $data);
 
 if (isPost()) {
     $filterAll = filter();
@@ -97,7 +98,6 @@ if (isPost()) {
     }
 }
 
-layout('header', $data);
 
 $msg = getFlashData('msg');
 $msg_type = getFlashData('msg_type');
@@ -163,5 +163,5 @@ $old = getFlashData('old');
 </div>
 
 <?php
-layout('footer');
+layout('footer-login');
 ?>

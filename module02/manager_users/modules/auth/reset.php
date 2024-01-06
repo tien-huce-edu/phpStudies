@@ -7,7 +7,7 @@ if (!defined('_CODE')) {
 $data = [
     'pageTitle' => 'Đặt lại mật khẩu'
 ];
-layout('header', $data);
+layout('header-login', $data);
 
 $token = filter()['token'];
 if (!empty($token)) {
@@ -100,5 +100,5 @@ $errors = getFlashData('errors');
 ?>
 
 <?php
-layout('footer');
+layout('footer-login');
 ?>
