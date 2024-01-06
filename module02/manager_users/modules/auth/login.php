@@ -6,7 +6,7 @@ if (!defined('_CODE')) {
 $data = [
     'pageTitle' => 'Đăng nhập tài khoản'
 ];
-layout('header', $data);
+layout('header-login', $data);
 
 
 if (isLogin()) {
@@ -102,5 +102,5 @@ $msg_type = getFlashData('msg_type');
 </div>
 
 <?php
-layout('footer');
+layout('footer-login');
 ?>
