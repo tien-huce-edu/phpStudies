@@ -12,7 +12,7 @@ function query($sql, $data = [], $check = false)
         $statement = $conn->prepare($sql);
         if (!empty($data)) {
             $result = $statement->execute($data);
-        }else{
+        } else {
             $result = $statement->execute();
         }
     } catch (Exception $e) {
@@ -28,7 +28,8 @@ function query($sql, $data = [], $check = false)
 }
 
 // ham insert
-function insert($table, $data){
+function insert($table, $data)
+{
     $keys = array_keys($data);
     $fields = implode(',', $keys);
     $values = ':' . implode(', :', $keys);
@@ -37,47 +38,51 @@ function insert($table, $data){
 }
 
 // ham update
-function update($table, $data, $where){
+function update($table, $data, $where)
+{
     $fields = '';
     foreach ($data as $key => $value) {
         $fields .= $key . '=:' . $key . ',';
     }
     $fields = rtrim($fields, ',');
-    if(!empty($where)){
+    if (!empty($where)) {
         $sql = "update $table set $fields where $where";
         return query($sql, $data);
-    }
-    else {
+    } else {
         $sql = "update $table set $fields";
         return query($sql, $data);
-    }  
+    }
 }
 
-function delete($table, $where){
+function delete($table, $where)
+{
     $sql = "delete from $table where $where";
     return query($sql);
 }
 
 // lay nhieu dong du lieu
-function getRaw($sql){
+function getRaw($sql)
+{
     $result = query($sql, [], true);
-    if(is_object($result)){
+    if (is_object($result)) {
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 
 // lay 1 dong du lieu
-function getOneRaw($sql){
+function getOneRaw($sql)
+{
     $result = query($sql, [], true);
-    if( is_object($result)){
+    if (is_object($result)) {
         return $result->fetch(PDO::FETCH_ASSOC);
     }
 }
 
 // dem so dong du lieu
-function countRaw($sql){
+function countRaw($sql)
+{
     $result = query($sql, [], true);
-    if(is_object($result)){
+    if (is_object($result)) {
         return $result->rowCount();
     }
 }
