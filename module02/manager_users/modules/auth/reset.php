@@ -89,7 +89,6 @@ if (!empty($token)) {
         <?php
     } else {
         getMsg('Liên kết đã hết hạn hoặc không tồn tại vui lòng thử lại!', 'danger');
-
     }
 } else {
     getMsg('Liên kết không đúng!', 'danger');
